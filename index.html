@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+  <body>
+    <div class="box">
+      <h1>Currency Converter</h1>
+            <div class="input-group">
+            <label for="amount">Amount:</label>
+            <input type="number" inputmode="numeric" id="amount" placeholder="Enter amount" /></div>
+             
+            <div class="input-group">
+            <label for="from">From</label>
+          
+          <select id="from-currency" ></select></div>
+
+            <div class="input-group">
+            <label for="to">To</label>
+          
+          <select id="to-currency" ></select></div>
+          <button class="btn">Convert</button>
+          <div id="result" class="hidden"></div>
+<script src="script.js"></script>
+  </body>
+</html>
+
