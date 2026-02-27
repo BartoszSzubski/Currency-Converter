@@ -1,8 +1,10 @@
 const amountInput = document.getElementById("amount");
 const fromCurrency = document.getElementById("from-currency");
 const toCurrency = document.getElementById("to-currency");
-const button = document.querySelector(".btn");
+const button = document.querySelector(".convert-btn");
 const resultDiv = document.getElementById("result");
+const swapButton = document.querySelector(".swap-btn");
+const clearButton = document.querySelector(".clear-btn");
 
 let rates = {};
 
@@ -11,19 +13,6 @@ fetch("https://cdn.moneyconvert.net/api/latest.json")
   .then((data) => {
     rates = data.rates;
     const currencyCodes = Object.keys(rates);
-
-    button.addEventListener("click", () => {
-      const amount = amountInput.value;
-      const from = fromCurrency.value;
-      const to = toCurrency.value;
-
-      const rateFrom = rates[from];
-      const rateTo = rates[to];
-
-      const result = (amount / rateFrom) * rateTo;
-      resultDiv.textContent = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
-      resultDiv.classList.add("active");
-    });
 
     currencyCodes.forEach((code) => {
       const optionFrom = document.createElement("option");
@@ -36,6 +25,45 @@ fetch("https://cdn.moneyconvert.net/api/latest.json")
       optionTo.textContent = code;
       toCurrency.appendChild(optionTo);
     });
+
+    function convert() {
+      const amount = amountInput.value;
+      const from = fromCurrency.value;
+      const to = toCurrency.value;
+
+      if (!amount || isNaN(amount)) return;
+
+      const rateFrom = rates[from];
+      const rateTo = rates[to];
+
+      const result = (amount / rateFrom) * rateTo;
+      resultDiv.textContent = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+      resultDiv.classList.add("active");
+
+      // Pokaż przycisk Clear dopiero po 1 sekundzie
+      setTimeout(() => {
+        clearButton.style.display = "inline-block";
+      }, 1000); // 1000ms = 1 sekunda
+    }
+
+    function clearConverter() {
+      amountInput.value = "";
+      resultDiv.textContent = "";
+      resultDiv.classList.remove("active");
+      clearButton.style.display = "none";
+    }
+
+    button.addEventListener("click", convert);
+
+    swapButton.addEventListener("click", () => {
+      let temp = fromCurrency.value;
+      fromCurrency.value = toCurrency.value;
+      toCurrency.value = temp;
+
+      convert();
+    });
+
+    clearButton.addEventListener("click", clearConverter);
 
     fromCurrency.value = "USD";
     toCurrency.value = "PLN";

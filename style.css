@@ -40,8 +40,17 @@ h1 {
   min-width: 90%;
 }
 
-.btn {
-  margin-top: 1em;
+.actions-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.convert-btn {
+  margin-top: 0.5em;
   padding: 0.5em;
   font-size: 1.8em;
   min-width: 50%;
@@ -55,9 +64,39 @@ h1 {
   outline: none;
   border: none;
 }
-.btn:hover {
+.convert-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px #7543d1;
+  box-shadow: 0 4px 15px #7543d1;
+}
+.swap-btn {
+  padding: 0.25em;
+  font-size: 1.2em;
+  min-width: 20%;
+  background-color: #502d92;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+  outline: none;
+  border: none;
+}
+.swap-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px #7543d1;
+}
+
+.clear-btn {
+  position: absolute;
+  display: none;
+  bottom: 2em;
+  left: 2em;
+  background-color: #502d92;
+  color: white;
+  border-radius: 10px;
+  padding: 1em;
+  cursor: pointer;
 }
 
 input,
