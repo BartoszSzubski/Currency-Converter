@@ -40,10 +40,9 @@ fetch("https://cdn.moneyconvert.net/api/latest.json")
       resultDiv.textContent = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
       resultDiv.classList.add("active");
 
-      // Pokaż przycisk Clear dopiero po 1 sekundzie
       setTimeout(() => {
         clearButton.style.display = "inline-block";
-      }, 1000); // 1000ms = 1 sekunda
+      }, 1000);
     }
 
     function clearConverter() {
