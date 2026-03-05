@@ -6,12 +6,58 @@
 
 body {
   font-family: "Montserrat", sans-serif;
-  background-color: #261742;
+  background-color: #000;
   color: #edecee;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.bg-dot1,
+.bg-dot2,
+.bg-dot3,
+.bg-dot4 {
+  background-image: radial-gradient(
+    closest-side,
+    rgba(145, 70, 243, 0.3),
+    #000
+  );
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(22px);
+}
+
+.bg-dot1 {
+  height: 50em;
+  width: 50em;
+  top: -57px;
+  left: 20px;
+}
+
+.bg-dot2 {
+  height: 80em;
+  width: 80em;
+  top: 50px;
+  right: 20px;
+}
+
+.bg-dot3 {
+  height: 65em;
+  width: 65em;
+  top: 200px;
+  left: 20px;
+}
+
+.bg-dot4 {
+  height: 65em;
+  width: 65em;
+  top: -200px;
+  right: 20px;
 }
 
 .box {
@@ -22,7 +68,7 @@ body {
   padding: 20px;
   min-height: 600px;
   min-width: 600px;
-  background-color: #3d2666;
+  background-color: rgba(61, 38, 102, 0.6);
   border-radius: 16px;
 }
 h1 {
@@ -39,7 +85,38 @@ h1 {
   padding: 1em;
   min-width: 90%;
 }
+.amount-input {
+  border: none;
+  border-radius: 5px;
+}
+.select-currency {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  padding: 0 10px;
+  -webkit-appearance: none;
+}
 
+.dropdown-arrow {
+  position: relative;
+  cursor: pointer;
+}
+.dropdown-arrow::before {
+  content: "";
+  position: absolute;
+  right: 30px;
+  top: 60px;
+  z-index: 100;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #ffffff;
+  border-top: 2px solid #5c3a96;
+  border-right: 2px solid #5c3a96;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
 .actions-container {
   position: relative;
   display: flex;
@@ -121,6 +198,14 @@ label {
   margin-bottom: 0.2em;
   color: #ccc9ce;
   font-size: 1.2em;
+}
+
+.tooltip {
+  display: none;
+  margin-top: 1em;
+  color: rgb(173, 29, 97);
+  position: absolute;
+  top: 95%;
 }
 
 .hidden {

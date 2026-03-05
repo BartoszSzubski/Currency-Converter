@@ -1,7 +1,7 @@
 const amountInput = document.getElementById("amount");
 const fromCurrency = document.getElementById("from-currency");
 const toCurrency = document.getElementById("to-currency");
-const button = document.querySelector(".convert-btn");
+const convertButton = document.querySelector(".convert-btn");
 const resultDiv = document.getElementById("result");
 const swapButton = document.querySelector(".swap-btn");
 const clearButton = document.querySelector(".clear-btn");
@@ -26,12 +26,21 @@ fetch("https://cdn.moneyconvert.net/api/latest.json")
       toCurrency.appendChild(optionTo);
     });
 
-    function convert() {
+    function convert(e) {
       const amount = amountInput.value;
       const from = fromCurrency.value;
       const to = toCurrency.value;
 
-      if (!amount || isNaN(amount)) return;
+      if ((!amount || isNaN(amount)) && e.target === convertButton) {
+        const tooltip = document.querySelector(".tooltip");
+        tooltip.style.display = "block";
+
+        setTimeout(() => {
+          tooltip.style.display = "none";
+        }, 3000);
+
+        return;
+      }
 
       const rateFrom = rates[from];
       const rateTo = rates[to];
@@ -52,7 +61,11 @@ fetch("https://cdn.moneyconvert.net/api/latest.json")
       clearButton.style.display = "none";
     }
 
-    button.addEventListener("click", convert);
+    convertButton.addEventListener("click", (e) => convert(e));
+
+    amountInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") convert();
+    });
 
     swapButton.addEventListener("click", () => {
       let temp = fromCurrency.value;
